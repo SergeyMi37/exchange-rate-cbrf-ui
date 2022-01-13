@@ -27,7 +27,6 @@ ClassMethod MainParameter(ByRef h, ByRef par) As %Status
 /// what modes are available
 ClassMethod GetAllApps(opt) As %Status
 {
-	zn "rate"
 	set ns=$namespace
 	set sideMenuName="Tables",
 		sideMenuNumer=1,
