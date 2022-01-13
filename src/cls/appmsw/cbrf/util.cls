@@ -18,12 +18,12 @@ ClassMethod MakeProject(dir) As %Status
 	;do ##class(apptools.core.code).exp(dir_"src","appmsw")
 	do $classmethod("apptools.core.code","exp",dir_"src","appmsw")
 	set List("appmsw.cbrf.tabexDayD.GBL")=""
-	set target=##class(%File).NormalizeFilename("appmsw.cbrf.tabexDayD.xml",dir_"src\gbl\")
+	set target=##class(%File).NormalizeFilename("appmsw.cbrf.tabexDayD.xml",dir_"src/gbl/")
 	Write $SYSTEM.OBJ.Export(.List, target)
 	
 	kill List
 	set List("appmsw.cbrf.tabexD.GBL")=""
-	set target=##class(%File).NormalizeFilename("appmsw.cbrf.tabexD.xml",dir_"src\gbl\")
+	set target=##class(%File).NormalizeFilename("appmsw.cbrf.tabexD.xml",dir_"src/gbl/")
 	Write $SYSTEM.OBJ.Export(.List, target)
 
 	do ..GetListApps($namespace,.list)
@@ -41,11 +41,13 @@ ClassMethod MakeProject(dir) As %Status
 ClassMethod initDb(from = "2021-01-01", to = "2021-12-31") As %Status
 {
 	for h=$zdh(from,3):1:$zdh(to,3) {
-		set Date=$zd(h,3) write !,Date
+		set Date=$zd(h,3) 
+		write !,"<br>"_Date
 		do ##class(appmsw.cbrf.tabexDay).CheckDay(Date,.count)
-		if $g(count) write " missed" continue
+		if $g(count) write " uploaded earlier" continue
 		set st=##class(appmsw.cbrf.tabexDay).LoadDay("http://www.cbr.ru/scripts/xml_daily.asp?date_req=",Date)
-		if st {	write " loaded"
+		if st {	
+			write " loaded"
 		}
 	}
     return $$$OK
