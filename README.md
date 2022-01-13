@@ -48,4 +48,4 @@ $ docker-compose up -d
 ## How to Test it
 Open link: http://localhost:52773/apptoolsrest/a/rate&class=appmsw.cbrf.rateinfo&namespace=USER
 
-[!](https://raw.githubusercontent.com/sergeymi37/exchange-rate-cbrf-ui/master/doc/Screenshot_51.png)
+![Link](https://raw.githubusercontent.com/sergeymi37/exchange-rate-cbrf-ui/master/doc/Screenshot_51.png)
