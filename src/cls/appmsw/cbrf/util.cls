@@ -12,7 +12,7 @@ ClassMethod init() As %Status
     return $$$OK
 }
 
-/// do ##class(appmsw.cbrf.util).MakeProject("d:\_proj\!\cbrf-ui\")
+/// do ##class(appmsw.cbrf.util).MakeProject("d:\_proj\!\cbrf\")
 ClassMethod MakeProject(dir) As %Status
 {
 	;do ##class(apptools.core.code).exp(dir_"src","appmsw")

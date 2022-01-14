@@ -45,7 +45,7 @@ ClassMethod GetAllApps(opt) As %Status
 		set opt(key,"TabMenu","Close")=1 ;0 = the tab cannot be deleted
 		set opt(key,"aw-icon")="fa-list-alt" ;fa-table"   https://fontawesome.com/icons?d=gallery&p=2&m=free
 		set opt(key,"Active")=1 ;active menu item
-		
+		/*
 		set key="Curr"
 		set opt(key,"Menu")=sideMenu
 		set opt(key)="Сurrencies"
@@ -57,7 +57,7 @@ ClassMethod GetAllApps(opt) As %Status
 		set opt(key,"Method")="ShowTabSample"
 		set opt(key,"TabMenu","Close")=1 ;0 = the tab cannot be deleted
 		set opt(key,"aw-icon")="fa-list-alt" ;fa-table"   https://fontawesome.com/icons?d=gallery&p=2&m=free
-	
+		*/
 	set sideMenuName="Charts",
 		sideMenuNumer=2,
 		sideMenuOpen=0,        //3 =1 open menu
@@ -72,14 +72,11 @@ ClassMethod GetAllApps(opt) As %Status
 			set opt(key,"ClassName")=..%ClassName(1)
 			set opt(key,"Role")="%All"
 			set opt(key,"Namespace")=ns
-			set opt(key,"Method")="ShowInIFrame"
+			set opt(key,"Method")="ShowTabSample"
 			set opt(key,"TabMenu","Close")=1 ;0 = the tab cannot be deleted
-			;http://iris-test:52773/apptools/apptools.Chart.Chart.cls?panel=class(appmsw.cbrf.ChartRate).AllCurrencies&days=1365&NSP=RATE
-			set url=##class(apptools.core.net).GetURI()_"/apptools/apptools.Chart.Chart.cls?panel=class(appmsw.cbrf.ChartRate).AllCurrencies&days=2365&NSP="_$namespace
-			set opt(key,"InFrameUrl")=url
 			set opt(key,"aw-icon")="fa-list-alt" ;fa-table"   https://fontawesome.com/icons?d=gallery&p=2&m=free
 
-			set key="ChartСurr3"
+			set key="ThreeСurr"
 			set opt(key,"Menu")=sideMenu
 			set opt(key)="Exchange rate 3"
 			set opt(key,"id")=key
@@ -87,10 +84,8 @@ ClassMethod GetAllApps(opt) As %Status
 			set opt(key,"ClassName")=..%ClassName(1)
 			set opt(key,"Role")="%All"
 			set opt(key,"Namespace")=ns
-			set opt(key,"Method")="ShowInIFrame"
+			set opt(key,"Method")="ShowTabSample"
 			set opt(key,"TabMenu","Close")=1 ;0 = the tab cannot be deleted
-			set url=##class(apptools.core.net).GetURI()_"/apptools/apptools.Chart.Chart.cls?panel=class(appmsw.cbrf.ChartRate).AllCurrencies&days=2265(EUR,USD,GBP)&NSP="_$namespace
-			set opt(key,"InFrameUrl")=url
 			set opt(key,"aw-icon")="fa-list-alt" ;fa-table"   https://fontawesome.com/icons?d=gallery&p=2&m=free
 
 
@@ -136,7 +131,30 @@ ClassMethod GetAllApps(opt) As %Status
 	quit $$$OK
 }
 
-/// download form template search users and roles
+ClassMethod ChartСurrFirstHead(Par = "") As %Status
+{
+	do ##class(apptools.core.Form).BlockUI(0)
+	set key=Par("key")
+	set divId=Par("divId")
+	set cgi="&panel=class(appmsw.cbrf.ChartRate).AllCurrencies&days=1365"
+	kill %request
+	do ##class(apptools.Chart.ChartPanel).Drawcanvas(cgi)
+	;$$$SetHeightContent(divId,250)
+	q $$$OK
+}
+
+ClassMethod ThreeСurrFirstHead(Par = "") As %Status
+{
+	do ##class(apptools.core.Form).BlockUI(0)
+	set key=Par("key")
+	set divId=Par("divId")
+	set cgi="&panel=class(appmsw.cbrf.ChartRate).AllCurrencies&days=2265(EUR,USD,GBP)"
+	kill %request
+	do ##class(apptools.Chart.ChartPanel).Drawcanvas(cgi)
+	;$$$SetHeightContent(divId,250)
+	q $$$OK
+}
+
 ClassMethod ViewFirstHead(Par = "") As %Status
 {
 	do ##class(apptools.core.Form).BlockUI(0)
