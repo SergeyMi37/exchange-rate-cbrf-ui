@@ -9,7 +9,7 @@
  [![Quality Gate Status](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Fexchange-rate-cbrf-ui&metric=alert_status)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Fexchange-rate-cbrf-ui)
  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SergeyMi37/exchange-rate-cbrf-ui">
  
-This project is a demonstration of the application of the dataset presented in the [solution for the contest](https://openexchange.intersystems.com/package/exchange-rate-cbrf)
+UI for demonstration [exchange-rate-cbrf](https://openexchange.intersystems.com/package/exchange-rate-cbrf)
  
 ## Installation with ZPM
 
@@ -46,6 +46,6 @@ $ docker-compose up -d
 ```
 
 ## How to Test it
-Open link: http://localhost:52773/apptoolsrest/a/rate&class=appmsw.cbrf.rateinfo&namespace=USER
+Open link: http://localhost:52663/apptoolsrest/a/rate&class=appmsw.cbrf.rateinfo&namespace=USER
 
 ![Link](https://raw.githubusercontent.com/sergeymi37/exchange-rate-cbrf-ui/master/doc/Screenshot_51.png)
