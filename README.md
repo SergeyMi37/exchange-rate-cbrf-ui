@@ -6,7 +6,6 @@
  
 ## exchange-rate-cbrf-ui
  [![OEX](https://img.shields.io/badge/Available%20on-Intersystems%20Open%20Exchange-00b2a9.svg)](https://openexchange.intersystems.com/package/exchange-rate-cbrf-ui)
- [![Quality Gate Status](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Fexchange-rate-cbrf-ui&metric=alert_status)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Fexchange-rate-cbrf-ui)
  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SergeyMi37/exchange-rate-cbrf-ui">
  
 UI for demonstration [exchange-rate-cbrf](https://openexchange.intersystems.com/package/exchange-rate-cbrf)
