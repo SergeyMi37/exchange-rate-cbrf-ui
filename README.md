@@ -9,7 +9,7 @@
  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SergeyMi37/exchange-rate-cbrf-ui">
 
 ## What's new
-Added example [LOAD DATA](https://openexchange.intersystems.com/package/exchange-rate-cbrf-ui)
+Added example [LOAD DATA](https://github.com/SergeyMi37/exchange-rate-cbrf-ui/blob/48acfe364a446f3c112d897ee49760607ea45cff/src/cls/appmsw/cbrf/rateinfo.cls#L268)
  
 UI for demonstration [exchange-rate-cbrf](https://openexchange.intersystems.com/package/exchange-rate-cbrf)
  
