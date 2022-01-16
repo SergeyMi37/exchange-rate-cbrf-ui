@@ -10,6 +10,9 @@
 
 ## What's new
 Added example [LOAD DATA](https://github.com/SergeyMi37/exchange-rate-cbrf-ui/blob/48acfe364a446f3c112d897ee49760607ea45cff/src/cls/appmsw/cbrf/rateinfo.cls#L268)
+
+![Link](https://raw.githubusercontent.com/sergeymi37/exchange-rate-cbrf-ui/master/doc/Screenshot_82.png)
+
  
 UI for demonstration [exchange-rate-cbrf](https://openexchange.intersystems.com/package/exchange-rate-cbrf)
  

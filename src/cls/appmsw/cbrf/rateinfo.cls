@@ -217,7 +217,7 @@ ClassMethod CurrFirstHead(Par = "") As %Status
 	set key=Par("key")
 	set divId=Par("divId")
 	set %ui=1
-	set path="/irisdev/app/src/csp/data/NamesCurrences.txt"
+	set path="/opt/irisapp/src/csp/data/NamesCurrences.txt"
     set inc=0 
 	//##class(apptools.core.Action).WriteActJs(%request,divId_"MainForm",divId_"MainContent",..%ClassName(1),divId_"Result","&key="_key_"&divId="_divId_"&mode=*")
 	set onclick=$$$blockui("Load...")_
