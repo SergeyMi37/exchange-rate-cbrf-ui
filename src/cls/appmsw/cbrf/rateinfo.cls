@@ -45,7 +45,7 @@ ClassMethod GetAllApps(opt) As %Status
 		set opt(key,"TabMenu","Close")=1 ;0 = the tab cannot be deleted
 		set opt(key,"aw-icon")="fa-list-alt" ;fa-table"   https://fontawesome.com/icons?d=gallery&p=2&m=free
 		set opt(key,"Active")=1 ;active menu item
-		/*
+
 		set key="Curr"
 		set opt(key,"Menu")=sideMenu
 		set opt(key)="Сurrencies"
@@ -57,7 +57,7 @@ ClassMethod GetAllApps(opt) As %Status
 		set opt(key,"Method")="ShowTabSample"
 		set opt(key,"TabMenu","Close")=1 ;0 = the tab cannot be deleted
 		set opt(key,"aw-icon")="fa-list-alt" ;fa-table"   https://fontawesome.com/icons?d=gallery&p=2&m=free
-		*/
+
 	set sideMenuName="Charts",
 		sideMenuNumer=2,
 		sideMenuOpen=0,        //3 =1 open menu
@@ -201,6 +201,7 @@ ClassMethod ViewResult(Par = "") As %Status
 	write ..ButtonAgain(divId,key)
 	if mode=1 {
 		set sql="select CharCode, DateExchangeRates, DateReq, LastChanged, Nominal, NumCode, Value from appmsw_cbrf.tabex where DateExchangeRates >= '"_from_"' and DateExchangeRates <= '"_to_"'"
+		set sql="select * from appmsw_cbrf.tabex where DateExchangeRates >= '"_from_"' and DateExchangeRates <= '"_to_"'"
 		set st=##class(apptools.core.LogInfoPane).DrawSQL(sql,100000,$zu(5),sql,$GET(exec),,1)
 		if 'st  write $$$appError($System.Status.GetErrorText(st))
 	}
@@ -216,7 +217,7 @@ ClassMethod CurrFirstHead(Par = "") As %Status
 	set key=Par("key")
 	set divId=Par("divId")
 	set %ui=1
-	set path="/tmp/curr-rate.txt"
+	set path="/irisdev/app/src/data/NamesCurrences.txt"
     set inc=0 
 	//##class(apptools.core.Action).WriteActJs(%request,divId_"MainForm",divId_"MainContent",..%ClassName(1),divId_"Result","&key="_key_"&divId="_divId_"&mode=*")
 	set onclick=$$$blockui("Load...")_
@@ -230,10 +231,10 @@ ClassMethod CurrFirstHead(Par = "") As %Status
 			<td>
 			</td>
 			<td>
-			#($$$appButton(divId_"appButtonResult"_$i(inc),"onclick="""_$tr(onclick,"*",$i(inc))_"""","Search"))#
-			#($$$appButton(divId_"appButtonResult"_$i(inc),"onclick="""_$tr(onclick,"*",$i(inc))_"""","Export"))#
+			#($$$appButton(divId_"appButtonResult1","onclick="""_$tr(onclick,"*",1)_"""","Search"))#
+			#($$$appButton(divId_"appButtonResult2","onclick="""_$tr(onclick,"*",2)_"""","Delete Data"))#
+			#($$$appButton(divId_"appButtonResult3","onclick="""_$tr(onclick,"*",3)_"""","Load Data"))#
 			#($$$appText(divId_"Path_to_files","title='path to files' size=80 ",path))#
-			#($$$appButton(divId_"appButtonResult"_$i(inc),"onclick="""_$tr(onclick,"*",$i(inc))_"""","Load Data"))#
 			</td>
 		</tr>
 		</table>
@@ -250,13 +251,23 @@ ClassMethod CurrResult(Par = "") As %Status
 	set key=Par("key")
 	set divId=Par("divId")
 	set mode=Par("mode")
-	;Geting elements from form and prepare array Par
-	set from=##class(apptools.core.Action).GetElemForm(%request,.Par,divId_"fromDate")	
-	set to=##class(apptools.core.Action).GetElemForm(%request,.Par,divId_"toDate")
+	set class="appmsw.cbrf.tabcurr"
+	set table="appmsw_cbrf.tabcurr"
+	set Path=##class(apptools.core.Action).GetElemForm(%request,.Par,divId_"Path_to_files")	
 	write ..ButtonAgain(divId,key)
-	set sql="select CharCode, DateExchangeRates, DateReq, LastChanged, Nominal, NumCode, Value from appmsw_cbrf.tabex where DateExchangeRates >= '"_from_"' and DateExchangeRates <= '"_to_"'"
-	set st=##class(apptools.core.LogInfoPane).DrawSQL(sql,100000,$zu(5),sql,$GET(exec),,1)
-	if 'st  write $$$appError($System.Status.GetErrorText(st))
+	if mode=1 {
+		set sql="select * from appmsw_cbrf.tabcurr"
+		set st=##class(apptools.core.LogInfoPane).DrawSQL(sql,100000,$zu(5),sql,$GET(exec),,1)
+		if 'st  write $$$appError($System.Status.GetErrorText(st))
+	}
+	elseif mode=2 {
+		Do $classmethod(class,"%KillExtent")
+		write "%KillExtent"
+	}
+	elseif mode=3 {
+		set st=##class(appmsw.cbrf.util).LoadData(Path,table)
+		write "Loaded"
+	}
 	quit $$$OK
 }
 

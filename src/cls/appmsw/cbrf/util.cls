@@ -12,7 +12,7 @@ ClassMethod init() As %Status
     return $$$OK
 }
 
-/// do ##class(appmsw.cbrf.util).MakeProject("d:\_proj\!\cbrf\")
+/// do ##class(appmsw.cbrf.util).MakeProject("/irisdev/app/src/data/")
 ClassMethod MakeProject(dir) As %Status
 {
 	;do ##class(apptools.core.code).exp(dir_"src","appmsw")
@@ -91,6 +91,14 @@ ClassMethod GetListApps(sourcedb, ByRef list) As %Status
 			merge list(name)=prop
 		}
 	}
+}
+
+/// set st=##class(appmsw.cbrf.util).LoadData("/irisdev/app/src/data/NamesCurrences.txt","appmsw_cbrf.tabcurr")
+ClassMethod LoadData(fileName, tableName)
+{
+    set Query = "LOAD DATA FROM FILE '"_fileName_"' INTO " _tableName_ "(CharCode,Name,NumCode)"
+    do ##class(%SQL.Statement).%ExecDirect(,Query)
+    quit $$$OK
 }
 
 }
